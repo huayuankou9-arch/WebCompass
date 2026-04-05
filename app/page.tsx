@@ -11,6 +11,7 @@ import { FindingsSection } from "@/components/FindingsSection";
 import { Footer } from "@/components/Footer";
 import { HeroSection } from "@/components/HeroSection";
 import { LimitationsSection } from "@/components/LimitationsSection";
+import { MainResultsTable } from "@/components/MainResultsTable";
 import { Navbar } from "@/components/Navbar";
 import { OverviewMatrix } from "@/components/OverviewMatrix";
 import { PaperSourceNote } from "@/components/PaperSourceNote";
@@ -23,6 +24,7 @@ import { comparisonRows } from "@/data/comparison";
 import { figureItems } from "@/data/figures";
 import { additionalFindings, mainFindings } from "@/data/findings";
 import { limitations } from "@/data/limitations";
+import { mainResultsRows } from "@/data/mainResultsTable";
 import { paperSectionMap } from "@/data/paperMapping";
 import { heroLinks, navItems, overviewAbstract, overviewHighlights, siteConfig } from "@/data/site";
 import { heroMetrics } from "@/data/stats";
@@ -140,6 +142,14 @@ export default function HomePage() {
           description="Findings are aligned to the Main Results and Further Analysis sections in the experiments chapter."
         />
         <PaperSourceNote text={paperSectionMap.findings} />
+        <div className="mb-10">
+          <SectionHeading
+            eyebrow="Main Results Table"
+            title="Table 3: Model Comparison Across Task Types and Dimensions"
+            description="This table is reproduced from the first table in Paper/sec/4_experiments.tex (tab:main_results)."
+          />
+          <MainResultsTable rows={mainResultsRows} />
+        </div>
         <FindingsSection mainFindings={mainFindings} additionalFindings={additionalFindings} />
       </SectionContainer>
 

@@ -28,12 +28,25 @@ export function FiguresGallery({ figures }: FiguresGalleryProps) {
             <Card className="h-full overflow-hidden">
               <div className="border-b border-border/60 bg-muted/30 p-3">
                 <div className="overflow-hidden rounded-lg border border-border/60 bg-background">
-                  <img
-                    src={withBasePath(figure.image)}
-                    alt={figure.alt}
-                    className="h-auto w-full object-cover"
-                    loading="lazy"
-                  />
+                  {isPdfFigure(figure.image) ? (
+                    <object
+                      data={withBasePath(figure.image)}
+                      type="application/pdf"
+                      className="h-[220px] w-full"
+                      aria-label={figure.alt}
+                    >
+                      <div className="flex h-[220px] items-center justify-center text-sm text-muted-foreground">
+                        PDF preview unavailable. Click to open.
+                      </div>
+                    </object>
+                  ) : (
+                    <img
+                      src={withBasePath(figure.image)}
+                      alt={figure.alt}
+                      className="h-auto w-full object-cover"
+                      loading="lazy"
+                    />
+                  )}
                 </div>
               </div>
               <CardHeader className="pb-3">
@@ -50,4 +63,8 @@ export function FiguresGallery({ figures }: FiguresGalleryProps) {
       <FigureModal figure={selected} open={Boolean(activeId)} onOpenChange={(open) => setActiveId(open ? activeId : null)} />
     </>
   );
+}
+
+function isPdfFigure(path: string) {
+  return path.toLowerCase().endsWith(".pdf");
 }

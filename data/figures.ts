@@ -1,74 +1,160 @@
-import type { FigureItem } from "@/lib/types";
+﻿import type { FigureItem } from "@/lib/types";
 
+// Figures listed strictly by order of \includegraphics references in Paper/sec (main text).
 export const figureItems: FigureItem[] = [
   {
-    id: "overview",
+    id: "fig-webcompass-radial",
     number: "Figure 1",
-    title: "WebCompass Overview",
-    caption:
-      "Overview of WebCompass: three modalities (text, image, video) and three task types (generation, editing, repair) forming seven categories.",
-    image: "/figures/overview.png",
-    alt: "Overview of WebCompass"
-  },
-  {
-    id: "radar",
-    number: "Figure 2",
-    title: "Dimension Radar",
-    caption: "Radar chart of model performance across all seven task categories.",
-    image: "/figures/webcompass_radial.png",
+    title: "Radar Chart Across Seven Task Types",
+    caption: "Radar chart of model performance across all seven task types in WebCompass.",
+    image: "/figures/webcompass_radial.pdf",
     alt: "WebCompass radial chart"
   },
   {
-    id: "difficulty-dist",
+    id: "fig-task-distribution",
+    number: "Figure 2",
+    title: "Difficulty Distribution of WebCompass",
+    caption: "Difficulty distribution of WebCompass.",
+    image: "/figures/task_distribution_heatmap_stacked.pdf",
+    alt: "Difficulty distribution heatmap"
+  },
+  {
+    id: "fig-overview",
     number: "Figure 3",
-    title: "Difficulty Distribution",
+    title: "Overview of WebCompass",
     caption:
-      "Difficulty-oriented dataset statistics across WebCompass tasks. TODO: replace with task_distribution_heatmap_stacked converted asset if needed.",
-    image: "/figures/data_statis2.png",
-    alt: "Difficulty distribution statistics"
+      "The benchmark supports three input modalities and three task types, resulting in seven complementary categories.",
+    image: "/figures/overview.pdf",
+    alt: "Overview of WebCompass"
   },
   {
-    id: "benchmark-comp",
+    id: "fig-data-pipeline",
     number: "Figure 4",
-    title: "Benchmark Comparison",
-    caption:
-      "Cross-benchmark ranking and comparison view. TODO: replace with final benchmark comparison figure from camera-ready set if needed.",
-    image: "/figures/web-bench-arena-rank.png",
-    alt: "Benchmark comparison view"
+    title: "Data Construction Pipeline",
+    caption: "Data construction pipeline for WebCompass across prototype collection and task-specific generation.",
+    image: "/figures/data_collection_pipeline.pdf",
+    alt: "Data construction pipeline"
   },
   {
-    id: "edit-breakdown",
+    id: "fig-llm-judge",
     number: "Figure 5",
-    title: "Edit Subtask Breakdown",
-    caption:
-      "Main experimental overview used as edit-related visual placeholder. TODO: replace with edit_subtask_bars converted asset.",
-    image: "/figures/main_results_overview.png",
-    alt: "Edit subtask proxy figure"
+    title: "LLM-as-a-Judge Pipeline",
+    caption: "Illustration of the LLM-as-a-Judge evaluation pipeline.",
+    image: "/figures/llm_as_judge.pdf",
+    alt: "LLM-as-a-Judge pipeline"
   },
   {
-    id: "repair-breakdown",
+    id: "fig-agent-judge",
     number: "Figure 6",
-    title: "Repair Subtask Breakdown",
+    title: "Agent-as-a-Judge Pipeline",
     caption:
-      "Checklist score analysis used as repair-related visual placeholder. TODO: replace with repair_subtask_bars converted asset.",
-    image: "/figures/check-list-score.png",
-    alt: "Repair subtask proxy figure"
+      "Agent-as-a-Judge evaluation with browser interaction, MCP evidence collection, and adaptive verification.",
+    image: "/figures/agent_as_a_judge.pdf",
+    alt: "Agent-as-a-Judge pipeline"
   },
   {
-    id: "difficulty-analysis",
+    id: "fig-rank-comparison",
     number: "Figure 7",
-    title: "Difficulty-Level Analysis",
-    caption: "Model scores across difficulty levels (Easy/Medium/Hard).",
-    image: "/figures/Score_of_diff_difficulty.png",
-    alt: "Difficulty level analysis"
+    title: "Agent-based vs Human Ranking",
+    caption:
+      "Model ranking comparison between automatic agent-based evaluation and human evaluation.",
+    image: "/figures/rank_comparison.pdf",
+    alt: "Rank comparison"
   },
   {
-    id: "error-analysis",
+    id: "fig-framework-bar",
     number: "Figure 8",
-    title: "Error Analysis",
-    caption:
-      "Consistency and stability trends under stricter evaluation settings. TODO: replace with error_statics_gen converted asset.",
-    image: "/figures/consistency_stability_linechart.png",
-    alt: "Error and stability analysis proxy"
+    title: "Framework Subset Evaluation",
+    caption: "Overall scores across React, Vue, and Vanilla frameworks for representative models.",
+    image: "/figures/framework_bar.pdf",
+    alt: "Framework comparison"
+  },
+  {
+    id: "fig-edit-subtask-bars",
+    number: "Figure 9",
+    title: "Editing Subtask Breakdown",
+    caption: "Overall score breakdown for editing tasks across 16 operation types.",
+    image: "/figures/edit_subtask_bars.pdf",
+    alt: "Editing subtask bars"
+  },
+  {
+    id: "fig-repair-subtask-bars",
+    number: "Figure 10",
+    title: "Repair Subtask Breakdown",
+    caption: "Overall score breakdown for repair tasks across 11 defect categories.",
+    image: "/figures/repair_subtask_bars.pdf",
+    alt: "Repair subtask bars"
+  },
+  {
+    id: "fig-diff-gen",
+    number: "Figure 11",
+    title: "Difficulty Comparison in Generation",
+    caption: "Per-dimension scores across Easy/Medium/Hard for generation tasks.",
+    image: "/figures/benchmark_dim_comparison_gen.pdf",
+    alt: "Generation difficulty comparison"
+  },
+  {
+    id: "fig-diff-edit",
+    number: "Figure 12",
+    title: "Difficulty Comparison in Edit",
+    caption: "Per-dimension scores across Easy/Medium/Hard for edit tasks.",
+    image: "/figures/benchmark_dim_comparison_edit.pdf",
+    alt: "Edit difficulty comparison"
+  },
+  {
+    id: "fig-diff-repair",
+    number: "Figure 13",
+    title: "Difficulty Comparison in Repair",
+    caption: "Per-dimension scores across Easy/Medium/Hard for repair tasks.",
+    image: "/figures/benchmark_dim_comparison_repair.pdf",
+    alt: "Repair difficulty comparison"
+  },
+  {
+    id: "fig-combined-violin",
+    number: "Figure 14",
+    title: "Patch Complexity Distributions",
+    caption: "Distribution of changed lines and patch complexity across models.",
+    image: "/figures/combined_violin.pdf",
+    alt: "Patch complexity violin"
+  },
+  {
+    id: "fig-worst-of-n",
+    number: "Figure 15",
+    title: "Consistency and Stability (Worst-of-N)",
+    caption: "Score degradation from Pass@1 to Worst-of-4 under consistency stress testing.",
+    image: "/figures/consistency_stability_linechart.pdf",
+    alt: "Worst-of-N consistency chart"
+  },
+  {
+    id: "fig-error-overall",
+    number: "Figure 16",
+    title: "Generation Error Distribution (Overall)",
+    caption: "Overall error distribution across evaluated models on generation tasks.",
+    image: "/figures/error_statics_gen.pdf",
+    alt: "Overall generation error distribution"
+  },
+  {
+    id: "fig-error-by-input",
+    number: "Figure 17",
+    title: "Generation Error Distribution by Modality",
+    caption: "Error distributions split by text-, image-, and video-conditioned generation.",
+    image: "/figures/error_statics_gen_by_input.pdf",
+    alt: "Generation error by modality"
+  },
+  {
+    id: "fig-error-edit",
+    number: "Figure 18",
+    title: "Quantitative Error Distribution in Edit",
+    caption: "Error type proportions and counts for edit tasks.",
+    image: "/figures/error_dist_edit.pdf",
+    alt: "Edit error distribution"
+  },
+  {
+    id: "fig-error-repair",
+    number: "Figure 19",
+    title: "Quantitative Error Distribution in Repair",
+    caption: "Error type proportions and counts for repair tasks.",
+    image: "/figures/error_dist_repair.pdf",
+    alt: "Repair error distribution"
   }
 ];
