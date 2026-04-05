@@ -1,31 +1,35 @@
-"use client";
+﻿"use client";
 
 import { AbstractSection } from "@/components/AbstractSection";
 import { BackToTop } from "@/components/BackToTop";
 import { BenchmarkComparisonTable } from "@/components/BenchmarkComparisonTable";
+import { BenchmarkMatrix } from "@/components/BenchmarkMatrix";
 import { CitationSection } from "@/components/CitationSection";
 import { ConclusionSection } from "@/components/ConclusionSection";
 import { EvaluationSection } from "@/components/EvaluationSection";
 import { FiguresGallery } from "@/components/FiguresGallery";
-import { FindingsSection } from "@/components/FindingsSection";
 import { Footer } from "@/components/Footer";
 import { HeroSection } from "@/components/HeroSection";
+import { InsightsSection } from "@/components/InsightsSection";
 import { LimitationsSection } from "@/components/LimitationsSection";
 import { MainResultsTable } from "@/components/MainResultsTable";
+import { MethodFlow } from "@/components/MethodFlow";
 import { Navbar } from "@/components/Navbar";
 import { OverviewMatrix } from "@/components/OverviewMatrix";
 import { PaperSourceNote } from "@/components/PaperSourceNote";
 import { PipelineSection } from "@/components/PipelineSection";
+import { ResultsShowcase } from "@/components/ResultsShowcase";
 import { SectionContainer } from "@/components/SectionContainer";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { citation } from "@/data/citation";
 import { comparisonRows } from "@/data/comparison";
 import { figureItems } from "@/data/figures";
-import { additionalFindings, mainFindings } from "@/data/findings";
+import { additionalFindings } from "@/data/findings";
 import { limitations } from "@/data/limitations";
 import { mainResultsRows } from "@/data/mainResultsTable";
 import { paperSectionMap } from "@/data/paperMapping";
+import { resultShowcase } from "@/data/resultsShowcase";
 import { heroLinks, navItems, overviewAbstract, overviewHighlights, siteConfig } from "@/data/site";
 import { heroMetrics } from "@/data/stats";
 import {
@@ -37,7 +41,7 @@ import {
 } from "@/data/tasks";
 import { useActiveSection, useScrollProgress } from "@/lib/hooks";
 
-const sectionIds = ["overview", "benchmark", "methodology", "findings", "figures", "discussion", "citation"];
+const sectionIds = ["overview", "benchmark", "methodology", "findings", "figures", "insights", "discussion", "citation"];
 
 export default function HomePage() {
   const activeSection = useActiveSection(sectionIds);
@@ -66,23 +70,28 @@ export default function HomePage() {
 
       <SectionContainer id="benchmark">
         <SectionHeading
-          eyebrow="Benchmark Overview"
-          title="From 3 Modalities and 3 Task Types to 7 Task Categories"
-          description="WebCompass jointly covers text, image, and video inputs across generation, editing, and repair, resulting in seven realistic web coding task categories."
+          eyebrow="Benchmark Design"
+          title="Unified Multimodal Benchmark Across the Development Lifecycle"
+          description="WebCompass integrates modalities, task types, and realistic engineering constraints into one coherent benchmark design."
         />
         <PaperSourceNote text={paperSectionMap.benchmark} />
+
+        <div className="mb-8">
+          <BenchmarkMatrix />
+        </div>
+
         <OverviewMatrix tasks={taskCategories} whyItems={whyWebCompass} />
 
         <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           <Card>
             <CardHeader>
-              <CardTitle>Scale</CardTitle>
+              <CardTitle>Benchmark Scale</CardTitle>
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground">{benchmarkFacts.scale}</CardContent>
           </Card>
           <Card>
             <CardHeader>
-              <CardTitle>Difficulty</CardTitle>
+              <CardTitle>Difficulty Distribution</CardTitle>
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground">
               {benchmarkFacts.difficulty.join(" / ")}
@@ -90,19 +99,17 @@ export default function HomePage() {
           </Card>
           <Card>
             <CardHeader>
-              <CardTitle>Generation Domains</CardTitle>
+              <CardTitle>Generation Taxonomy</CardTitle>
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground">
-              {benchmarkFacts.generationDomains} domains
+              {benchmarkFacts.generationDomains} application domains
             </CardContent>
           </Card>
           <Card>
             <CardHeader>
-              <CardTitle>Fine-grained Taxonomy</CardTitle>
+              <CardTitle>Evaluation Dimensions</CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-muted-foreground">
-              Editing: {benchmarkFacts.editingOperationTypes} types, Repair: {benchmarkFacts.repairDefectCategories} types
-            </CardContent>
+            <CardContent className="text-sm text-muted-foreground">Execution / Interactivity / Aesthetics</CardContent>
           </Card>
         </div>
 
@@ -114,7 +121,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="Benchmark Comparison"
             title="Coverage Against Prior Benchmarks"
-            description="Values are aligned to Table 1 in the paper. Rows are intentionally kept explicit for direct replacement or extension."
+            description="Values are aligned to Table 1 in the paper."
           />
           <BenchmarkComparisonTable rows={comparisonRows} />
         </div>
@@ -122,52 +129,67 @@ export default function HomePage() {
 
       <SectionContainer id="methodology">
         <SectionHeading
-          eyebrow="Data Construction / Methodology"
-          title="Deterministic Construction, Task-aware Evaluation"
-          description="WebCompass combines human-in-the-loop data curation with task-specific evaluation protocols for patch-based and open-ended settings."
+          eyebrow="Method / Pipeline"
+          title="From Data Construction to Task-aware Evaluation"
+          description="WebCompass evaluates different task families with tailored judging paradigms while preserving shared dimensions."
         />
         <PaperSourceNote text={paperSectionMap.methodology} />
 
-        <h3 className="mb-4 text-xl font-semibold">A. Benchmark Data Construction</h3>
+        <div className="mb-10">
+          <MethodFlow />
+        </div>
+
+        <h3 className="mb-4 text-xl font-semibold">Data Construction Pipeline</h3>
         <PipelineSection steps={constructionPipeline} />
 
-        <h3 className="mb-4 mt-12 text-xl font-semibold">B. Evaluation Methodology</h3>
+        <h3 className="mb-4 mt-12 text-xl font-semibold">Evaluation Paradigms</h3>
         <EvaluationSection steps={evaluationPipeline} />
       </SectionContainer>
 
       <SectionContainer id="findings">
         <SectionHeading
-          eyebrow="Experimental Findings"
-          title="Behavior-level Gaps Surface in Realistic Web Coding"
-          description="Findings are aligned to the Main Results and Further Analysis sections in the experiments chapter."
+          eyebrow="Experimental Results"
+          title="Figure-driven Results on Web Coding Agent Evaluation"
+          description="Main quantitative table and representative result figures from the experiments section."
         />
         <PaperSourceNote text={paperSectionMap.findings} />
+
         <div className="mb-10">
           <SectionHeading
-            eyebrow="Main Results Table"
+            eyebrow="Main Table"
             title="Table 3: Model Comparison Across Task Types and Dimensions"
-            description="This table is reproduced from the first table in Paper/sec/4_experiments.tex (tab:main_results)."
+            description="Reproduced from the first table in Paper/sec/4_experiments.tex (tab:main_results)."
           />
           <MainResultsTable rows={mainResultsRows} />
         </div>
-        <FindingsSection mainFindings={mainFindings} additionalFindings={additionalFindings} />
+
+        <ResultsShowcase figures={figureItems} items={resultShowcase} />
       </SectionContainer>
 
       <SectionContainer id="figures">
         <SectionHeading
-          eyebrow="Figures Gallery"
-          title="Paper Figures and Visual Summaries"
-          description="Click each figure to inspect a larger view. Real PNG assets are loaded from Paper/figures where available."
+          eyebrow="Figure Gallery"
+          title="All Figures Referenced in the Main Paper Text"
+          description="Figures are grouped by benchmark/method, main results, and analysis. Click to inspect each figure."
         />
         <PaperSourceNote text={paperSectionMap.figures} />
         <FiguresGallery figures={figureItems} />
       </SectionContainer>
 
+      <SectionContainer id="insights">
+        <SectionHeading
+          eyebrow="Insights"
+          title="Key Takeaways for Web Coding Agent Development"
+          description="Interpretation-focused insights distilled from result trends and error analyses."
+        />
+        <InsightsSection findings={additionalFindings} />
+      </SectionContainer>
+
       <SectionContainer id="discussion">
         <SectionHeading
-          eyebrow="Limitations & Discussion"
-          title="Honest Scope and Future Directions"
-          description="The following points are directly aligned to the limitations section in the paper."
+          eyebrow="Limitations"
+          title="Scope, Constraints, and Future Directions"
+          description="Limitations are presented to clarify scope and inform follow-up benchmark design."
         />
         <PaperSourceNote text={paperSectionMap.discussion} />
         <LimitationsSection items={limitations} />
@@ -175,8 +197,8 @@ export default function HomePage() {
         <div className="mt-12">
           <SectionHeading
             eyebrow="Conclusion"
-            title="Toward More Realistic Evaluation for Web Coding Agents"
-            description="WebCompass highlights that advancing web coding agents requires stronger functional reasoning, visual design understanding, and output consistency."
+            title="Toward More Faithful Evaluation of Web Coding Agents"
+            description="WebCompass emphasizes realistic, multimodal, and lifecycle-aware evaluation for future research."
           />
           <ConclusionSection
             text="WebCompass unifies multimodal inputs and lifecycle tasks under evidence-grounded evaluation, positioning web coding agents as holistic builders of user-facing experiences rather than code-only generators."
@@ -186,7 +208,7 @@ export default function HomePage() {
 
       <SectionContainer id="citation">
         <SectionHeading
-          eyebrow="Citation / Resources"
+          eyebrow="Citation"
           title="Use and Extend WebCompass"
           description="If WebCompass is useful for your research, please cite the paper and explore project resources."
         />

@@ -1,4 +1,4 @@
-import type { LinkItem, NavItem } from "@/lib/types";
+﻿import type { LinkItem, NavItem } from "@/lib/types";
 
 export const siteConfig = {
   name: "WebCompass",
@@ -22,11 +22,12 @@ export const siteConfig = {
 
 export const navItems: NavItem[] = [
   { label: "Overview", href: "#overview" },
-  { label: "Benchmark", href: "#benchmark" },
-  { label: "Methodology", href: "#methodology" },
-  { label: "Findings", href: "#findings" },
+  { label: "Design", href: "#benchmark" },
+  { label: "Method", href: "#methodology" },
+  { label: "Results", href: "#findings" },
+  { label: "Insights", href: "#insights" },
   { label: "Figures", href: "#figures" },
-  { label: "Discussion", href: "#discussion" },
+  { label: "Limitations", href: "#discussion" },
   { label: "Citation", href: "#citation" }
 ];
 

@@ -26,20 +26,24 @@ export function FigureModal({ figure, open, onOpenChange }: FigureModalProps) {
           <DialogTitle>{figure.number}: {figure.title}</DialogTitle>
           <DialogDescription>{figure.caption}</DialogDescription>
         </DialogHeader>
-        <div className="overflow-hidden rounded-lg border border-border bg-muted/40">
+        <div className="overflow-hidden rounded-lg border border-border bg-white p-2">
           {figure.image.toLowerCase().endsWith(".pdf") ? (
-            <object
-              data={withBasePath(figure.image)}
-              type="application/pdf"
-              className="h-[75vh] w-full"
-              aria-label={figure.alt}
+            <iframe
+              src={withBasePath(figure.image)}
+              title={figure.alt}
+              className="h-[78vh] w-full rounded-md border border-border/60 bg-white"
             >
               <div className="flex h-[260px] items-center justify-center text-sm text-muted-foreground">
                 PDF preview unavailable in current browser.
               </div>
-            </object>
+            </iframe>
           ) : (
-            <img src={withBasePath(figure.image)} alt={figure.alt} className="h-auto w-full object-cover" loading="lazy" />
+            <img
+              src={withBasePath(figure.image)}
+              alt={figure.alt}
+              className="mx-auto max-h-[78vh] w-auto max-w-full object-contain"
+              loading="lazy"
+            />
           )}
         </div>
       </DialogContent>

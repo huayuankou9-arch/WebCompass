@@ -65,6 +65,8 @@ export type FigureItem = {
   caption: string;
   image: string;
   alt: string;
+  group?: "Benchmark & Method" | "Main Results" | "Analysis";
+  keyInsight?: string;
 };
 
 export type LimitationItem = {
