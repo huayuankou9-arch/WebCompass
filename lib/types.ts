@@ -63,9 +63,11 @@ export type FigureItem = {
   number: string;
   title: string;
   caption: string;
-  image: string;
+  previewSrc: string;
+  fullSrc?: string;
   alt: string;
-  group?: "Benchmark & Method" | "Main Results" | "Analysis";
+  section: "overview" | "benchmark" | "method" | "results" | "gallery";
+  priority: "primary" | "secondary";
   keyInsight?: string;
 };
 

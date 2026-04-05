@@ -9,6 +9,7 @@ import { ConclusionSection } from "@/components/ConclusionSection";
 import { EvaluationSection } from "@/components/EvaluationSection";
 import { FiguresGallery } from "@/components/FiguresGallery";
 import { Footer } from "@/components/Footer";
+import { InlineFigureSpotlight } from "@/components/figures/InlineFigureSpotlight";
 import { HeroSection } from "@/components/HeroSection";
 import { InsightsSection } from "@/components/InsightsSection";
 import { LimitationsSection } from "@/components/LimitationsSection";
@@ -24,7 +25,7 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { citation } from "@/data/citation";
 import { comparisonRows } from "@/data/comparison";
-import { figureItems } from "@/data/figures";
+import { figureItems, getFiguresBySection, getSupplementaryFigures } from "@/data/figures";
 import { additionalFindings } from "@/data/findings";
 import { limitations } from "@/data/limitations";
 import { mainResultsRows } from "@/data/mainResultsTable";
@@ -46,6 +47,11 @@ const sectionIds = ["overview", "benchmark", "methodology", "findings", "figures
 export default function HomePage() {
   const activeSection = useActiveSection(sectionIds);
   const progress = useScrollProgress();
+  const overviewFigure = getFiguresBySection("overview")[0];
+  const benchmarkFigure = getFiguresBySection("benchmark")[0];
+  const methodFigure = getFiguresBySection("method")[0];
+  const resultFigures = getFiguresBySection("results");
+  const supplementaryFigures = getSupplementaryFigures();
 
   return (
     <main className="relative bg-grid">
@@ -67,6 +73,11 @@ export default function HomePage() {
         highlights={overviewHighlights}
         sourceNote={paperSectionMap.overview}
       />
+      {overviewFigure ? (
+        <div className="container -mt-8 mb-8">
+          <InlineFigureSpotlight figure={overviewFigure} />
+        </div>
+      ) : null}
 
       <SectionContainer id="benchmark">
         <SectionHeading
@@ -79,6 +90,11 @@ export default function HomePage() {
         <div className="mb-8">
           <BenchmarkMatrix />
         </div>
+        {benchmarkFigure ? (
+          <div className="mb-8">
+            <InlineFigureSpotlight figure={benchmarkFigure} />
+          </div>
+        ) : null}
 
         <OverviewMatrix tasks={taskCategories} whyItems={whyWebCompass} />
 
@@ -138,6 +154,11 @@ export default function HomePage() {
         <div className="mb-10">
           <MethodFlow />
         </div>
+        {methodFigure ? (
+          <div className="mb-8">
+            <InlineFigureSpotlight figure={methodFigure} />
+          </div>
+        ) : null}
 
         <h3 className="mb-4 text-xl font-semibold">Data Construction Pipeline</h3>
         <PipelineSection steps={constructionPipeline} />
@@ -163,17 +184,17 @@ export default function HomePage() {
           <MainResultsTable rows={mainResultsRows} />
         </div>
 
-        <ResultsShowcase figures={figureItems} items={resultShowcase} />
+        <ResultsShowcase figures={resultFigures} items={resultShowcase} />
       </SectionContainer>
 
       <SectionContainer id="figures">
         <SectionHeading
-          eyebrow="Figure Gallery"
-          title="All Figures Referenced in the Main Paper Text"
-          description="Figures are grouped by benchmark/method, main results, and analysis. Click to inspect each figure."
+          eyebrow="Supplementary Figures"
+          title="Additional Figures and Extended Analyses"
+          description="Secondary figures not featured earlier are collected here for completeness."
         />
         <PaperSourceNote text={paperSectionMap.figures} />
-        <FiguresGallery figures={figureItems} />
+        <FiguresGallery figures={supplementaryFigures} />
       </SectionContainer>
 
       <SectionContainer id="insights">

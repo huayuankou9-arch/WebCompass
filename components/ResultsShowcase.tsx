@@ -2,11 +2,12 @@
 
 import { useMemo, useState } from "react";
 
-import { FigureModal } from "@/components/FigureModal";
+import { FigureModal } from "@/components/figures/FigureModal";
+import { InlineFigureCard } from "@/components/figures/InlineFigureCard";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { withBasePath } from "@/lib/base-path";
-import type { FigureItem } from "@/lib/types";
 import { pickFigureById } from "@/data/resultsShowcase";
+import type { FigureItem } from "@/lib/types";
+import { cn } from "@/lib/utils";
 
 type ResultsShowcaseProps = {
   figures: FigureItem[];
@@ -23,36 +24,25 @@ export function ResultsShowcase({ figures, items }: ResultsShowcaseProps) {
 
   return (
     <>
-      <div className="grid gap-4 md:grid-cols-2">
-        {items.map((item) => {
+      <div className="space-y-6">
+        {items.map((item, index) => {
           const figure = pickFigureById(figures, item.figureId);
           if (!figure) return null;
 
           return (
-            <button
-              type="button"
-              key={item.title}
-              onClick={() => setActiveId(figure.id)}
-              className="text-left transition-transform hover:-translate-y-0.5"
-            >
-              <Card className="h-full border-border/70">
-                <div className="rounded-t-xl border-b border-border/60 bg-muted/30 p-3">
-                  {figure.image.toLowerCase().endsWith(".pdf") ? (
-                    <div className="flex h-[180px] items-center justify-center rounded-md border border-border/60 bg-white text-sm text-muted-foreground">
-                      {figure.number} • PDF Figure
-                    </div>
-                  ) : (
-                    <img src={withBasePath(figure.image)} alt={figure.alt} className="h-[180px] w-full rounded-md object-contain bg-white" />
-                  )}
-                </div>
+            <div key={item.title} className="grid gap-4 lg:grid-cols-2 lg:items-stretch">
+              <Card className={cn("border-border/70", index % 2 === 1 && "lg:order-2") }>
                 <CardHeader>
-                  <CardTitle className="text-base">{item.title}</CardTitle>
+                  <CardTitle className="text-lg">{item.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground">{item.insight}</p>
                 </CardContent>
               </Card>
-            </button>
+              <div className={cn(index % 2 === 1 && "lg:order-1") }>
+                <InlineFigureCard figure={figure} onOpen={() => setActiveId(figure.id)} />
+              </div>
+            </div>
           );
         })}
       </div>
