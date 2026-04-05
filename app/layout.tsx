@@ -18,12 +18,10 @@ const jetbrainsMono = JetBrains_Mono({
 const [ownerFromEnv, repoFromEnv] = (process.env.GITHUB_REPOSITORY || "huayuankou9-arch/WebCompass").split("/");
 const owner = ownerFromEnv || "huayuankou9-arch";
 const repo = repoFromEnv || "WebCompass";
-const isProduction = process.env.NODE_ENV === "production";
-const basePath = isProduction ? `/${repo}` : "";
 const productionUrl = `https://${owner}.github.io/${repo}/`;
-const siteUrl = isProduction ? productionUrl : "http://localhost:3000/";
-const ogImagePath = `${basePath}/og-image.svg`;
-const faviconPath = `${basePath}/favicon.svg`;
+const siteUrl = process.env.NODE_ENV === "production" ? productionUrl : "http://localhost:3000/";
+const ogImagePath = "og-image.svg";
+const faviconPath = "favicon.svg";
 
 export const metadata: Metadata = {
   title: "WebCompass | A Unified Multimodal Benchmark for Web Coding",

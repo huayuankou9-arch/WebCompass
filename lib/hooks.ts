@@ -12,22 +12,37 @@ export function useActiveSection(sectionIds: string[]) {
 
     if (sections.length === 0) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+    const updateActive = () => {
+      const offset = 140;
+      const scrollPosition = window.scrollY + offset;
+      const pageBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4;
 
-        if (visible[0]?.target?.id) {
-          setActiveId(visible[0].target.id);
-          window.history.replaceState(null, "", `#${visible[0].target.id}`);
+      let current = sections[0]?.id ?? "";
+
+      for (const section of sections) {
+        if (scrollPosition >= section.offsetTop) {
+          current = section.id;
         }
-      },
-      { rootMargin: "-35% 0px -55% 0px", threshold: [0.1, 0.3, 0.6] }
-    );
+      }
 
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
+      if (pageBottom) {
+        current = sections[sections.length - 1]?.id ?? current;
+      }
+
+      setActiveId((prev) => {
+        if (prev === current) return prev;
+        window.history.replaceState(null, "", `#${current}`);
+        return current;
+      });
+    };
+
+    updateActive();
+    window.addEventListener("scroll", updateActive, { passive: true });
+    window.addEventListener("resize", updateActive);
+    return () => {
+      window.removeEventListener("scroll", updateActive);
+      window.removeEventListener("resize", updateActive);
+    };
   }, [sectionIds]);
 
   return activeId;

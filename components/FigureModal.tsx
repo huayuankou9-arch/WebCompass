@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-
 import {
   Dialog,
   DialogContent,
@@ -9,6 +7,7 @@ import {
   DialogHeader,
   DialogTitle
 } from "@/components/ui/dialog";
+import { withBasePath } from "@/lib/base-path";
 import type { FigureItem } from "@/lib/types";
 
 type FigureModalProps = {
@@ -28,14 +27,7 @@ export function FigureModal({ figure, open, onOpenChange }: FigureModalProps) {
           <DialogDescription>{figure.caption}</DialogDescription>
         </DialogHeader>
         <div className="overflow-hidden rounded-lg border border-border bg-muted/40">
-          <Image
-            src={figure.image}
-            alt={figure.alt}
-            width={1600}
-            height={900}
-            className="h-auto w-full object-cover"
-            priority={false}
-          />
+          <img src={withBasePath(figure.image)} alt={figure.alt} className="h-auto w-full object-cover" loading="lazy" />
         </div>
       </DialogContent>
     </Dialog>

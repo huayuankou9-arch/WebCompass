@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { useMemo, useState } from "react";
 
 import { FigureModal } from "@/components/FigureModal";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { withBasePath } from "@/lib/base-path";
 import type { FigureItem } from "@/lib/types";
 
 type FiguresGalleryProps = {
@@ -28,12 +28,11 @@ export function FiguresGallery({ figures }: FiguresGalleryProps) {
             <Card className="h-full overflow-hidden">
               <div className="border-b border-border/60 bg-muted/30 p-3">
                 <div className="overflow-hidden rounded-lg border border-border/60 bg-background">
-                  <Image
-                    src={figure.image}
+                  <img
+                    src={withBasePath(figure.image)}
                     alt={figure.alt}
-                    width={900}
-                    height={520}
                     className="h-auto w-full object-cover"
+                    loading="lazy"
                   />
                 </div>
               </div>
