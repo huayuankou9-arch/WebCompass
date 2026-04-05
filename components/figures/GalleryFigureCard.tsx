@@ -9,20 +9,13 @@ type GalleryFigureCardProps = {
 
 export function GalleryFigureCard({ figure, onOpen }: GalleryFigureCardProps) {
   const src = withBasePath(figure.previewSrc);
-  const isPdf = src.toLowerCase().endsWith(".pdf");
 
   return (
     <Card className="h-full overflow-hidden border-border/70">
       <button type="button" onClick={onOpen} className="block w-full text-left">
         <div className="border-b border-border/60 bg-muted/20 p-3">
           <div className="overflow-hidden rounded-lg border border-border/60 bg-white">
-            {isPdf ? (
-              <div className="flex h-[160px] items-center justify-center text-center text-xs text-muted-foreground">
-                {figure.number} preview (PDF). Click to enlarge.
-              </div>
-            ) : (
-              <img src={src} alt={figure.alt} className="h-[160px] w-full object-contain" loading="lazy" />
-            )}
+            <img src={src} alt={figure.alt} className="h-[160px] w-full object-contain" loading="lazy" />
           </div>
         </div>
       </button>

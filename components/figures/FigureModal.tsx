@@ -20,7 +20,6 @@ export function FigureModal({ figure, open, onOpenChange }: FigureModalProps) {
   if (!figure) return null;
 
   const src = withBasePath(figure.fullSrc ?? figure.previewSrc);
-  const isPdf = src.toLowerCase().endsWith(".pdf");
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -30,15 +29,7 @@ export function FigureModal({ figure, open, onOpenChange }: FigureModalProps) {
           <DialogDescription>{figure.caption}</DialogDescription>
         </DialogHeader>
         <div className="overflow-hidden rounded-lg border border-border bg-white p-2">
-          {isPdf ? (
-            <iframe
-              src={src}
-              title={figure.alt}
-              className="h-[78vh] w-full rounded-md border border-border/60 bg-white"
-            />
-          ) : (
-            <img src={src} alt={figure.alt} className="mx-auto max-h-[78vh] w-auto max-w-full object-contain" loading="lazy" />
-          )}
+          <img src={src} alt={figure.alt} className="mx-auto max-h-[78vh] w-auto max-w-full object-contain" loading="lazy" />
         </div>
       </DialogContent>
     </Dialog>

@@ -30,18 +30,20 @@ export function ResultsShowcase({ figures, items }: ResultsShowcaseProps) {
           if (!figure) return null;
 
           return (
-            <div key={item.title} className="grid gap-4 lg:grid-cols-2 lg:items-stretch">
-              <Card className={cn("border-border/70", index % 2 === 1 && "lg:order-2") }>
+            <div key={item.title} className="grid gap-4 rounded-xl border border-border/70 bg-card/60 p-3 lg:grid-cols-2 lg:p-4">
+              <div className={cn(index % 2 === 1 && "lg:order-2") }>
+                <InlineFigureCard figure={figure} onOpen={() => setActiveId(figure.id)} />
+              </div>
+              <Card className={cn("border-border/70 bg-background/70", index % 2 === 1 && "lg:order-1") }>
                 <CardHeader>
+                  <div className="text-xs font-medium uppercase tracking-wide text-primary">{figure.number}</div>
                   <CardTitle className="text-lg">{item.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">{item.insight}</p>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{item.insight}</p>
+                  <p className="mt-3 text-xs text-muted-foreground">{figure.caption}</p>
                 </CardContent>
               </Card>
-              <div className={cn(index % 2 === 1 && "lg:order-1") }>
-                <InlineFigureCard figure={figure} onOpen={() => setActiveId(figure.id)} />
-              </div>
             </div>
           );
         })}

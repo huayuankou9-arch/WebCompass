@@ -25,8 +25,8 @@ export const navItems: NavItem[] = [
   { label: "Design", href: "#benchmark" },
   { label: "Method", href: "#methodology" },
   { label: "Results", href: "#findings" },
-  { label: "Insights", href: "#insights" },
   { label: "Figures", href: "#figures" },
+  { label: "Insights", href: "#insights" },
   { label: "Limitations", href: "#discussion" },
   { label: "Citation", href: "#citation" }
 ];
