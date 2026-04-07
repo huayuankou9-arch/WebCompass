@@ -8,6 +8,10 @@ type GalleryFigureCardProps = {
   onOpen?: () => void;
 };
 
+function isPdf(src: string) {
+  return src.toLowerCase().endsWith(".pdf");
+}
+
 export function GalleryFigureCard({ figure, onOpen }: GalleryFigureCardProps) {
   if (!figure.previewSrc) {
     if (figure.hideIfMissing) return null;
@@ -21,7 +25,20 @@ export function GalleryFigureCard({ figure, onOpen }: GalleryFigureCardProps) {
       <button type="button" onClick={onOpen} className="block w-full text-left">
         <div className="border-b border-border/60 bg-muted/10 p-2">
           <div className="overflow-hidden rounded-lg border border-border/60 bg-white">
-            <img src={src} alt={figure.alt} className="mx-auto h-auto w-full max-h-[320px]" loading="lazy" />
+            {isPdf(src) ? (
+              <iframe
+                src={`${src}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                title={figure.alt}
+                className="h-[300px] w-full"
+              />
+            ) : (
+              <img
+                src={src}
+                alt={figure.alt}
+                className="mx-auto h-[300px] w-full object-contain"
+                loading="lazy"
+              />
+            )}
           </div>
         </div>
       </button>

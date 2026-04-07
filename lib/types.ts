@@ -75,6 +75,7 @@ export type FigureItem = {
   priority: "primary" | "secondary";
   placement: FigurePlacement;
   size: FigureSize;
+  mediaFrameClass?: string;
   hideIfMissing?: boolean;
 };
 
