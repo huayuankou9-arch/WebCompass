@@ -13,9 +13,9 @@ export const siteConfig = {
   builtWith: "Next.js, Tailwind CSS, Framer Motion, shadcn/ui",
   links: {
     paper: "https://arxiv.org/abs/TODO",
-    github: "https://github.com/huayuankou9-arch/WebCompass",
-    huggingface: "https://huggingface.co/datasets/TODO/webcompass",
-    dataset: "https://huggingface.co/datasets/TODO/webcompass",
+    github: "https://github.com/NJU-LINK/WebCompass",
+    huggingface: "https://huggingface.co/datasets/NJU-LINK/WebCompass",
+    dataset: "https://huggingface.co/datasets/NJU-LINK/WebCompass",
     arxivBadge: "https://arxiv.org/abs/TODO"
   }
 };
@@ -48,3 +48,4 @@ export const overviewHighlights = [
 
 export const overviewAbstract =
   "Evaluating web coding requires more than code correctness: success depends on runtime execution, interaction behavior, and visual quality in browser environments. WebCompass addresses this gap with a unified multimodal benchmark spanning text, image, and video inputs, and lifecycle tasks across generation, editing, and repair. The benchmark is designed for realistic front-end engineering scenarios with deterministic construction and evidence-grounded evaluation.";
+
