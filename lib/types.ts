@@ -60,6 +60,8 @@ export type FindingItem = {
 
 export type FigurePlacement = "overview" | "benchmark" | "method" | "results" | "gallery";
 export type FigureSize = "hero" | "featured" | "standard" | "compact";
+export type FigureAspectRatio = "auto" | "landscape" | "portrait" | "square";
+export type FigureAssetType = "image" | "pdf";
 
 export type FigureItem = {
   id: string;
@@ -70,11 +72,14 @@ export type FigureItem = {
   sourceRef: string;
   previewSrc?: string;
   fullSrc?: string;
+  previewType?: FigureAssetType;
+  fullType?: FigureAssetType;
   alt: string;
   hasRealAsset: boolean;
   priority: "primary" | "secondary";
   placement: FigurePlacement;
   size: FigureSize;
+  aspectRatio?: FigureAspectRatio;
   mediaFrameClass?: string;
   hideIfMissing?: boolean;
 };

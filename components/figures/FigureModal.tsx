@@ -1,6 +1,9 @@
 ﻿"use client";
 
+import { ExternalLink } from "lucide-react";
+
 import { withBasePath } from "@/lib/base-path";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -16,16 +19,13 @@ type FigureModalProps = {
   onOpenChange: (open: boolean) => void;
 };
 
-function isPdf(src: string) {
-  return src.toLowerCase().endsWith(".pdf");
-}
-
 export function FigureModal({ figure, open, onOpenChange }: FigureModalProps) {
   if (!figure) return null;
-  const modalSrc = figure.fullSrc ?? figure.previewSrc;
-  if (!modalSrc) return null;
 
-  const src = withBasePath(modalSrc);
+  const previewSrc = figure.previewSrc ? withBasePath(figure.previewSrc) : null;
+  const fullSrc = figure.fullSrc ? withBasePath(figure.fullSrc) : null;
+  const showPreview = previewSrc && figure.previewType !== "pdf";
+  const pdfSrc = figure.fullType === "pdf" && fullSrc ? fullSrc : null;
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -36,17 +36,32 @@ export function FigureModal({ figure, open, onOpenChange }: FigureModalProps) {
           </DialogTitle>
           <DialogDescription>{figure.caption}</DialogDescription>
         </DialogHeader>
-        <div className="overflow-hidden rounded-lg border border-border bg-white p-2">
-          {isPdf(src) ? (
-            <iframe
-              src={`${src}#toolbar=0&navpanes=0&scrollbar=1`}
-              title={figure.alt}
-              className="h-[80vh] w-full"
+
+        {showPreview ? (
+          <div className="overflow-hidden rounded-lg border border-border bg-white p-2">
+            <img
+              src={previewSrc}
+              alt={figure.alt}
+              className="mx-auto h-auto max-h-[80vh] w-full object-contain"
+              loading="lazy"
             />
-          ) : (
-            <img src={src} alt={figure.alt} className="mx-auto h-auto max-h-[80vh] w-full object-contain" loading="lazy" />
-          )}
-        </div>
+          </div>
+        ) : (
+          <div className="rounded-lg border border-dashed border-border bg-muted/20 p-6 text-sm text-muted-foreground">
+            Preview asset pending.
+          </div>
+        )}
+
+        {pdfSrc ? (
+          <div className="flex justify-end">
+            <Button asChild variant="outline" size="sm">
+              <a href={pdfSrc} target="_blank" rel="noreferrer">
+                Open Original PDF
+                <ExternalLink className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+          </div>
+        ) : null}
       </DialogContent>
     </Dialog>
   );

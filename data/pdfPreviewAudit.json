@@ -1,0 +1,100 @@
+{
+  "generatedAt": "2026-04-07T14:57:57.281Z",
+  "report": [
+    {
+      "source": "agent_as_a_judge.pdf",
+      "preview": "agent-as-a-judge.png",
+      "status": "ok"
+    },
+    {
+      "source": "benchmark_dim_comparison_edit.pdf",
+      "preview": null,
+      "status": "missing"
+    },
+    {
+      "source": "benchmark_dim_comparison_gen.pdf",
+      "preview": "Score_of_diff_difficulty.png",
+      "status": "ok"
+    },
+    {
+      "source": "benchmark_dim_comparison_repair.pdf",
+      "preview": null,
+      "status": "missing"
+    },
+    {
+      "source": "combined_violin.pdf",
+      "preview": null,
+      "status": "missing"
+    },
+    {
+      "source": "consistency_stability_linechart.pdf",
+      "preview": "consistency_stability_linechart.png",
+      "status": "ok"
+    },
+    {
+      "source": "data_collection_pipeline.pdf",
+      "preview": "data_collection_pipeline.png",
+      "status": "ok"
+    },
+    {
+      "source": "edit_subtask_bars.pdf",
+      "preview": "main_results_overview.png",
+      "status": "ok"
+    },
+    {
+      "source": "error_dist_edit.pdf",
+      "preview": null,
+      "status": "missing"
+    },
+    {
+      "source": "error_dist_repair.pdf",
+      "preview": null,
+      "status": "missing"
+    },
+    {
+      "source": "error_statics_gen_by_input.pdf",
+      "preview": null,
+      "status": "missing"
+    },
+    {
+      "source": "error_statics_gen.pdf",
+      "preview": null,
+      "status": "missing"
+    },
+    {
+      "source": "framework_bar.pdf",
+      "preview": null,
+      "status": "missing"
+    },
+    {
+      "source": "llm_as_judge.pdf",
+      "preview": "Evaluation_Validity_verification.png",
+      "status": "ok"
+    },
+    {
+      "source": "overview.pdf",
+      "preview": "overview.png",
+      "status": "ok"
+    },
+    {
+      "source": "rank_comparison.pdf",
+      "preview": "web-bench-arena-rank.png",
+      "status": "ok"
+    },
+    {
+      "source": "repair_subtask_bars.pdf",
+      "preview": "check-list-score.png",
+      "status": "ok"
+    },
+    {
+      "source": "task_distribution_heatmap_stacked.pdf",
+      "preview": null,
+      "status": "missing"
+    },
+    {
+      "source": "webcompass_radial.pdf",
+      "preview": "webcompass_radial.png",
+      "status": "ok"
+    }
+  ]
+}

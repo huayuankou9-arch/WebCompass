@@ -14,11 +14,15 @@ const figureSeeds: FigureSeed[] = [
       "WebCompass supports three modalities and three task types, forming seven task categories across the web development lifecycle.",
     takeaway: "A unified benchmark view connects modalities, tasks, and evaluation dimensions.",
     sourceRef: "overview.pdf",
-    previewSrc: "/figures/overview.pdf",
+    previewSrc: "/figures/overview.png",
+    fullSrc: "/figures/overview.pdf",
+    previewType: "image",
+    fullType: "pdf",
     alt: "Overview of WebCompass benchmark design",
     priority: "primary",
     placement: "overview",
-    size: "hero"
+    size: "hero",
+    aspectRatio: "landscape"
   },
   {
     id: "fig-radial",
@@ -27,11 +31,15 @@ const figureSeeds: FigureSeed[] = [
     caption: "Radar chart of model performance across seven WebCompass task categories.",
     sourceRef: "webcompass_radial.pdf",
     previewSrc: "/figures/webcompass_radial.png",
+    fullSrc: "/figures/webcompass_radial.pdf",
+    previewType: "image",
+    fullType: "pdf",
     alt: "WebCompass seven-task radar chart",
     priority: "primary",
     placement: "benchmark",
     size: "standard",
-    mediaFrameClass: "mx-auto max-w-[860px]"
+    aspectRatio: "square",
+    mediaFrameClass: "mx-auto max-w-[780px]"
   },
   {
     id: "fig-task-distribution",
@@ -39,10 +47,13 @@ const figureSeeds: FigureSeed[] = [
     title: "Task Distribution Heatmap",
     caption: "Difficulty and modality-aware distribution across the WebCompass task inventory.",
     sourceRef: "task_distribution_heatmap_stacked.pdf",
+    previewType: "image",
+    fullType: "pdf",
     alt: "Task distribution heatmap",
     priority: "secondary",
     placement: "benchmark",
     size: "compact",
+    aspectRatio: "landscape",
     hideIfMissing: true
   },
   {
@@ -51,11 +62,15 @@ const figureSeeds: FigureSeed[] = [
     title: "Data Construction Pipeline",
     caption: "Pipeline from prototype collection to deterministic task construction and quality control.",
     sourceRef: "data_collection_pipeline.pdf",
-    previewSrc: "/figures/data_collection_pipeline.pdf",
+    previewSrc: "/figures/data_collection_pipeline.png",
+    fullSrc: "/figures/data_collection_pipeline.pdf",
+    previewType: "image",
+    fullType: "pdf",
     alt: "Data construction pipeline",
     priority: "primary",
     placement: "method",
-    size: "featured"
+    size: "featured",
+    aspectRatio: "landscape"
   },
   {
     id: "fig-llm-judge",
@@ -63,11 +78,15 @@ const figureSeeds: FigureSeed[] = [
     title: "LLM-as-a-Judge for Editing and Repair",
     caption: "Checklist-guided judging pipeline for editing and repair tasks.",
     sourceRef: "llm_as_judge.pdf",
-    previewSrc: "/figures/llm_as_judge.pdf",
+    previewSrc: "/figures/Evaluation_Validity_verification.png",
+    fullSrc: "/figures/llm_as_judge.pdf",
+    previewType: "image",
+    fullType: "pdf",
     alt: "LLM-as-a-Judge evaluation pipeline",
     priority: "secondary",
     placement: "method",
-    size: "standard"
+    size: "standard",
+    aspectRatio: "landscape"
   },
   {
     id: "fig-agent-judge",
@@ -75,11 +94,15 @@ const figureSeeds: FigureSeed[] = [
     title: "Agent-as-a-Judge for Generation",
     caption: "Browser-grounded interaction and evidence collection for open-ended generation.",
     sourceRef: "agent_as_a_judge.pdf",
-    previewSrc: "/figures/agent_as_a_judge.pdf",
+    previewSrc: "/figures/agent-as-a-judge.png",
+    fullSrc: "/figures/agent_as_a_judge.pdf",
+    previewType: "image",
+    fullType: "pdf",
     alt: "Agent-as-a-Judge pipeline",
     priority: "secondary",
     placement: "method",
-    size: "standard"
+    size: "standard",
+    aspectRatio: "landscape"
   },
   {
     id: "fig-diff-gen",
@@ -89,10 +112,13 @@ const figureSeeds: FigureSeed[] = [
     takeaway: "Interactivity drops the fastest as generation tasks become harder.",
     sourceRef: "benchmark_dim_comparison_gen.pdf",
     previewSrc: "/figures/Score_of_diff_difficulty.png",
+    previewType: "image",
+    fullType: "image",
     alt: "Difficulty scaling in generation",
     priority: "primary",
     placement: "results",
-    size: "featured"
+    size: "featured",
+    aspectRatio: "landscape"
   },
   {
     id: "fig-edit-subtask",
@@ -102,10 +128,13 @@ const figureSeeds: FigureSeed[] = [
     takeaway: "Animation-related edits remain significantly harder than structural edits.",
     sourceRef: "edit_subtask_bars.pdf",
     previewSrc: "/figures/main_results_overview.png",
+    previewType: "image",
+    fullType: "image",
     alt: "Editing subtask breakdown",
     priority: "primary",
     placement: "results",
-    size: "featured"
+    size: "featured",
+    aspectRatio: "landscape"
   },
   {
     id: "fig-repair-subtask",
@@ -115,10 +144,13 @@ const figureSeeds: FigureSeed[] = [
     takeaway: "Repair quality depends on deeper intent understanding, not only syntax correction.",
     sourceRef: "repair_subtask_bars.pdf",
     previewSrc: "/figures/check-list-score.png",
+    previewType: "image",
+    fullType: "image",
     alt: "Repair subtask breakdown",
     priority: "primary",
     placement: "results",
-    size: "featured"
+    size: "featured",
+    aspectRatio: "landscape"
   },
   {
     id: "fig-consistency",
@@ -128,10 +160,14 @@ const figureSeeds: FigureSeed[] = [
     takeaway: "Consistency is a stronger reliability signal than one-off wins.",
     sourceRef: "consistency_stability_linechart.pdf",
     previewSrc: "/figures/consistency_stability_linechart.png",
+    fullSrc: "/figures/consistency_stability_linechart.pdf",
+    previewType: "image",
+    fullType: "pdf",
     alt: "Consistency and stability line chart",
     priority: "primary",
     placement: "results",
-    size: "featured"
+    size: "featured",
+    aspectRatio: "landscape"
   },
   {
     id: "fig-rank",
@@ -140,10 +176,14 @@ const figureSeeds: FigureSeed[] = [
     caption: "Comparison between agent-based ranking and human ranking over generation outputs.",
     sourceRef: "rank_comparison.pdf",
     previewSrc: "/figures/web-bench-arena-rank.png",
+    fullSrc: "/figures/rank_comparison.pdf",
+    previewType: "image",
+    fullType: "pdf",
     alt: "Rank comparison between automatic and human evaluation",
     priority: "secondary",
     placement: "gallery",
-    size: "standard"
+    size: "standard",
+    aspectRatio: "landscape"
   },
   {
     id: "fig-framework",
@@ -151,10 +191,13 @@ const figureSeeds: FigureSeed[] = [
     title: "Framework-wise Comparison",
     caption: "Result comparison across framework subsets.",
     sourceRef: "framework_bar.pdf",
+    previewType: "image",
+    fullType: "pdf",
     alt: "Framework subset comparison",
     priority: "secondary",
     placement: "gallery",
     size: "compact",
+    aspectRatio: "landscape",
     hideIfMissing: true
   },
   {
@@ -164,10 +207,13 @@ const figureSeeds: FigureSeed[] = [
     caption: "Per-dimension editing performance over increasing difficulty.",
     sourceRef: "benchmark_dim_comparison_edit.pdf",
     previewSrc: "/figures/difficulty-analysis.svg",
+    previewType: "image",
+    fullType: "image",
     alt: "Difficulty scaling in editing",
     priority: "secondary",
     placement: "gallery",
-    size: "standard"
+    size: "standard",
+    aspectRatio: "landscape"
   },
   {
     id: "fig-diff-repair",
@@ -176,10 +222,13 @@ const figureSeeds: FigureSeed[] = [
     caption: "Per-dimension repair performance over increasing difficulty.",
     sourceRef: "benchmark_dim_comparison_repair.pdf",
     previewSrc: "/figures/difficulty-distribution.svg",
+    previewType: "image",
+    fullType: "image",
     alt: "Difficulty scaling in repair",
     priority: "secondary",
     placement: "gallery",
-    size: "standard"
+    size: "standard",
+    aspectRatio: "landscape"
   },
   {
     id: "fig-violin",
@@ -187,10 +236,13 @@ const figureSeeds: FigureSeed[] = [
     title: "Patch Complexity Distribution",
     caption: "Patch size and complexity distributions across evaluated models.",
     sourceRef: "combined_violin.pdf",
+    previewType: "image",
+    fullType: "pdf",
     alt: "Patch complexity distribution",
     priority: "secondary",
     placement: "gallery",
     size: "compact",
+    aspectRatio: "landscape",
     hideIfMissing: true
   },
   {
@@ -199,10 +251,13 @@ const figureSeeds: FigureSeed[] = [
     title: "Generation Error Distribution",
     caption: "Overall generation error distribution in evaluated model outputs.",
     sourceRef: "error_statics_gen.pdf",
+    previewType: "image",
+    fullType: "pdf",
     alt: "Generation error distribution",
     priority: "secondary",
     placement: "gallery",
     size: "compact",
+    aspectRatio: "landscape",
     hideIfMissing: true
   },
   {
@@ -211,10 +266,13 @@ const figureSeeds: FigureSeed[] = [
     title: "Generation Errors by Input Modality",
     caption: "Error distribution split by text, image, and video conditioned generation.",
     sourceRef: "error_statics_gen_by_input.pdf",
+    previewType: "image",
+    fullType: "pdf",
     alt: "Generation errors by input modality",
     priority: "secondary",
     placement: "gallery",
     size: "compact",
+    aspectRatio: "landscape",
     hideIfMissing: true
   },
   {
@@ -223,10 +281,13 @@ const figureSeeds: FigureSeed[] = [
     title: "Editing Error Distribution",
     caption: "Category-level error distribution in editing tasks.",
     sourceRef: "error_dist_edit.pdf",
+    previewType: "image",
+    fullType: "pdf",
     alt: "Editing error distribution",
     priority: "secondary",
     placement: "gallery",
     size: "compact",
+    aspectRatio: "landscape",
     hideIfMissing: true
   },
   {
@@ -235,10 +296,13 @@ const figureSeeds: FigureSeed[] = [
     title: "Repair Error Distribution",
     caption: "Category-level error distribution in repair tasks.",
     sourceRef: "error_dist_repair.pdf",
+    previewType: "image",
+    fullType: "pdf",
     alt: "Repair error distribution",
     priority: "secondary",
     placement: "gallery",
     size: "compact",
+    aspectRatio: "landscape",
     hideIfMissing: true
   }
 ];

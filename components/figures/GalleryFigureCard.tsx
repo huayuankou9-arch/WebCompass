@@ -8,36 +8,33 @@ type GalleryFigureCardProps = {
   onOpen?: () => void;
 };
 
-function isPdf(src: string) {
-  return src.toLowerCase().endsWith(".pdf");
-}
+const aspectRatioClass: Record<NonNullable<FigureItem["aspectRatio"]>, string> = {
+  auto: "",
+  landscape: "aspect-[16/10]",
+  portrait: "aspect-[4/5]",
+  square: "aspect-square"
+};
 
 export function GalleryFigureCard({ figure, onOpen }: GalleryFigureCardProps) {
-  if (!figure.previewSrc) {
+  if (!figure.previewSrc || figure.previewType === "pdf") {
     if (figure.hideIfMissing) return null;
     return <FigureFallbackCard number={figure.number} title={figure.title} caption={figure.caption} />;
   }
 
   const src = withBasePath(figure.previewSrc);
+  const ratio = figure.aspectRatio ?? "landscape";
 
   return (
     <Card className="h-full overflow-hidden border-border/70 bg-card/95">
       <button type="button" onClick={onOpen} className="block w-full text-left">
         <div className="border-b border-border/60 bg-muted/10 p-2">
           <div className="overflow-hidden rounded-lg border border-border/60 bg-white">
-            {isPdf(src) ? (
-              <iframe
-                src={`${src}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
-                title={figure.alt}
-                className="h-[300px] w-full"
-              />
+            {ratio === "auto" ? (
+              <img src={src} alt={figure.alt} className="mx-auto h-auto w-full max-h-[300px] object-contain" loading="lazy" />
             ) : (
-              <img
-                src={src}
-                alt={figure.alt}
-                className="mx-auto h-[300px] w-full object-contain"
-                loading="lazy"
-              />
+              <div className={`relative w-full ${aspectRatioClass[ratio]}`}>
+                <img src={src} alt={figure.alt} className="absolute inset-0 h-full w-full object-contain" loading="lazy" />
+              </div>
             )}
           </div>
         </div>

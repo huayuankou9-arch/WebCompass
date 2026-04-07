@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "sync:figures": "node scripts/extract-used-figures.mjs"
+    "sync:figures": "node scripts/extract-used-figures.mjs",
+    "check:figure-previews": "node scripts/check-figure-previews.mjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.4",
