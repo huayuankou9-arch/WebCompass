@@ -16,7 +16,7 @@ export function FiguresGallery({ figures }: FiguresGalleryProps) {
 
   return (
     <>
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {figures.map((figure) => (
           <GalleryFigureCard key={figure.id} figure={figure} onOpen={() => setActiveId(figure.id)} />
         ))}

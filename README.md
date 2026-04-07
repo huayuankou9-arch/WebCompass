@@ -1,4 +1,4 @@
-# WebCompass Frontend
+﻿# WebCompass Frontend
 
 Academic project page for **WebCompass: A Unified Multimodal Benchmark and Evaluation Framework for Web Coding**.
 
@@ -21,7 +21,6 @@ Production deployment target:
 ## Local Development
 
 ```bash
-cd Frontend
 npm install
 npm run dev
 ```
@@ -34,11 +33,11 @@ Local URL: `http://localhost:3000`
 npm run build
 ```
 
-This project uses Next.js static export (`output: "export"`) and generates the deployable static files in `out/`.
+This project uses Next.js static export (`output: "export"`) and generates deployable static files in `out/`.
 
 ## GitHub Pages Deployment
 
-Deployment is fully automated by GitHub Actions:
+Deployment is automated by GitHub Actions:
 
 - Workflow file: `.github/workflows/deploy.yml`
 - Trigger: push to `main` or `master`
@@ -48,13 +47,24 @@ Deployment is fully automated by GitHub Actions:
 3. Upload Pages artifact (`out/`)
 4. Deploy with `actions/deploy-pages`
 
-GitHub repository Pages source should be configured to **GitHub Actions**.
-
-## Automatic Update Flow
-
-After this setup, every push to the default branch automatically updates:
-
+After each push, the site updates at:
 `https://huayuankou9-arch.github.io/WebCompass/`
+
+## Figure-Source Consistency (LaTeX whitelist)
+
+The frontend only renders figures that are referenced in LaTeX files under `../Paper/sec`.
+
+- Extraction script: `scripts/extract-used-figures.mjs`
+- Output whitelist: `data/usedFigures.json`
+
+Run:
+
+```bash
+npm run sync:figures
+npm run build
+```
+
+Figure rendering in `data/figures.ts` is filtered by this whitelist, and missing secondary assets are suppressed from the gallery.
 
 ## Deployment-specific Notes
 
@@ -72,5 +82,6 @@ Frontend/
   data/
   lib/
   public/
+  scripts/
   styles/
 ```

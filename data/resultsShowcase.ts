@@ -7,23 +7,23 @@ export const resultShowcase: Array<{
 }> = [
   {
     title: "Difficulty Scaling",
-    insight: "Performance drops monotonically from Easy to Hard across task families.",
+    insight: "Performance drops monotonically from Easy to Hard across generation, editing, and repair families.",
     figureId: "fig-diff-gen"
   },
   {
     title: "Interactivity Bottleneck",
-    insight: "Generation quality degrades most severely on interactivity under complex requirements.",
-    figureId: "fig-diff-repair"
+    insight: "Interactivity remains the most fragile dimension under complex generation requirements.",
+    figureId: "fig-consistency"
   },
   {
     title: "Editing Difficulty",
-    insight: "Animation-heavy operations remain harder than business workflow edits.",
-    figureId: "fig-edit-subtask-bars"
+    insight: "Animation-heavy operations remain significantly harder than structure-preserving edits.",
+    figureId: "fig-edit-subtask"
   },
   {
     title: "Repair Difficulty",
-    insight: "Semantic-level defects remain the major bottleneck in repair tasks.",
-    figureId: "fig-repair-subtask-bars"
+    insight: "Semantic defects demand stronger intent understanding than surface-level bug fixing.",
+    figureId: "fig-repair-subtask"
   }
 ];
 

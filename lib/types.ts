@@ -1,4 +1,4 @@
-export type NavItem = {
+﻿export type NavItem = {
   label: string;
   href: string;
 };
@@ -58,17 +58,24 @@ export type FindingItem = {
   emphasis: string;
 };
 
+export type FigurePlacement = "overview" | "benchmark" | "method" | "results" | "gallery";
+export type FigureSize = "hero" | "featured" | "standard" | "compact";
+
 export type FigureItem = {
   id: string;
   number: string;
   title: string;
   caption: string;
-  previewSrc: string;
+  takeaway?: string;
+  sourceRef: string;
+  previewSrc?: string;
   fullSrc?: string;
   alt: string;
-  section: "overview" | "benchmark" | "method" | "results" | "gallery";
+  hasRealAsset: boolean;
   priority: "primary" | "secondary";
-  keyInsight?: string;
+  placement: FigurePlacement;
+  size: FigureSize;
+  hideIfMissing?: boolean;
 };
 
 export type LimitationItem = {

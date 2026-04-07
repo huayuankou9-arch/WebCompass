@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sync:figures": "node scripts/extract-used-figures.mjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.4",
